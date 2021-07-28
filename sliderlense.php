@@ -12,7 +12,7 @@
 /*
 Plugin Name: Slider-Lense Carousel
 Plugin URI:  https://github.com/Centric-Data/sliderlense
-Description: This is a custom contact form plugin, it can be used in the contact page. Its using a two column layout, with custom css (no-blotted-frameworks)
+Description: This is a custom carousel plugin, it can be embedded using a plugin shortcode, slider-lense on the homepage, in the hero section. Its using Slick, a jQuery plugin
 Author: Centric Data
 Version: 1.0.0
 Author URI: https://github.com/Centric-Data
@@ -42,7 +42,7 @@ define( 'SL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 class SliderLense
 {
 
-  public function __construct(argument)
+  public function __construct()
   {
     // Enqueue Scripts.
     add_action( 'wp_enqueue_scripts', array( $this, 'sl_load_assets' ) );
@@ -53,6 +53,7 @@ class SliderLense
 
   // Load Assets.
   public function sl_load_assets(){
+    wp_enqueue_script("jquery");
     // Register Styles & Scripts.
     wp_register_style( 'sliderlense-css', SL_PLUGIN_URL . 'css/sliderlense.css', [], time(), 'all' );
     wp_register_style( 'slick-lense-css', SL_PLUGIN_URL . 'css/slick/slick.css', [], false, 'all' );
@@ -61,22 +62,47 @@ class SliderLense
     wp_register_script( 'sliderlense-js', SL_PLUGIN_URL . 'js/sliderlense.js', ['jquery', 'slick-lense-js'], time(), 'all' );
 
     // Enqqueue Scripts & Styles
-    wp_enqueue_style( 'sliderlense-css' );
     wp_enqueue_style( 'slick-lense-css' );
     wp_enqueue_style( 'slick-theme-lense-css' );
-    wp_enqueue_script( 'sliderlense-js' );
+    wp_enqueue_style( 'sliderlense-css' );
     wp_enqueue_script( 'slick-lense-js' );
+    wp_enqueue_script( 'sliderlense-js' );
 
   }
 
   // Shortcode function
   public function sl_load_shortcode(){
     ?>
-      <h3>Slider shortcode here!</h3>
+      <section>
+        <div class="slider__wrapper">
+          <div class="slider__hero--img">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
+          </div>
+          <div class="slider__hero--desc">
+            <div class="slider__hero--caption">
+              <div class="slider__hero--caption-info">
+                <h2>Need a plan examined and approved first time?</h2>
+                <p>Use Premium Consulting Service to gain access to our Planning Technical Experts who will provide guidance prior to formally submitting plans, register dealings and create titles to deliver significant efficiencies and value to you and your clients.</p>
+              </div>
+              <div class="slider__hero--controls">
+                <div class="readmore">
+                  <a class="readmore--post" href="#">Read More</a>
+                </div>
+                <div class="slider__hero--buttons">
+                  <a class="left__control" href="#"><span class="material-icons">arrow_back</span></a>
+                  <a class="right__control" href="#"><span class="material-icons">arrow_forward</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     <?php
   }
 
 }
 
-
+new SliderLense;
 ?>
