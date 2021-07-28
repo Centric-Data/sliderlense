@@ -77,7 +77,7 @@ class SliderLense
         <div class="slider__wrapper">
           <div class="slider__hero--img">
               <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide02.jpg" alt="Harvestor">
               <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
           </div>
           <div class="slider__hero--desc">
