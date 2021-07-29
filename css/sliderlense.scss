@@ -18,6 +18,12 @@
     }
 }
 
+@keyframes slideTopDown {
+  100%{
+    transition: translateY(100%);
+  }
+}
+
 /* Slider Section CSS */
 .slider{
     &__wrapper{

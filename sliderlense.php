@@ -58,6 +58,7 @@ class SliderLense
     wp_register_style( 'sliderlense-css', SL_PLUGIN_URL . 'css/sliderlense.css', [], time(), 'all' );
     wp_register_style( 'slick-lense-css', SL_PLUGIN_URL . 'css/slick/slick.css', [], false, 'all' );
     wp_register_style( 'slick-theme-lense-css', SL_PLUGIN_URL . 'css/slick/slick-theme.css', ['slick-lense-css'], false, 'all' );
+    wp_register_style( 'animate-css', SL_PLUGIN_URL . 'css/animate/animate.min.css', [], '4.1.1', 'all' );
     wp_register_script( 'slick-lense-js', SL_PLUGIN_URL . 'js/slick/slick.js', ['jquery'], false, true );
     wp_register_script( 'sliderlense-js', SL_PLUGIN_URL . 'js/sliderlense.js', ['jquery', 'slick-lense-js'], time(), 'all' );
 
@@ -65,6 +66,7 @@ class SliderLense
     wp_enqueue_style( 'slick-lense-css' );
     wp_enqueue_style( 'slick-theme-lense-css' );
     wp_enqueue_style( 'sliderlense-css' );
+    wp_enqueue_style( 'animate-css' );
     wp_enqueue_script( 'slick-lense-js' );
     wp_enqueue_script( 'sliderlense-js' );
 
@@ -75,12 +77,12 @@ class SliderLense
     ?>
       <section>
         <div class="slider__wrapper">
-          <div class="slider__hero--img">
+          <div class="slider__hero--img animate__animated animate__fadeInRight">
               <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
               <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide02.jpg" alt="Harvestor">
               <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
           </div>
-          <div class="slider__hero--desc">
+          <div class="slider__hero--desc animate__animated animate__fadeInDown">
             <div class="slider__hero--caption">
               <div class="slider__hero--caption-info">
                 <h2>Need a plan examined and approved first time?</h2>
