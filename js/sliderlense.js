@@ -11,12 +11,12 @@ jQuery(document).ready(function( $ ){
   });
 });
 
-const heroDesc = document.querySelector('.slider__hero--caption');
-
-setTimeout( () => {
-  heroDesc.style.backgroundColor = 'black';
-}, 4000 );
-
-setTimeout( () => {
-  heroDesc.style.backgroundColor = 'red';
-}, 8000 );
+// const heroDesc = document.querySelector('.slider__hero--caption');
+//
+// setTimeout( () => {
+//   heroDesc.style.backgroundColor = 'black';
+// }, 4000 );
+//
+// setTimeout( () => {
+//   heroDesc.style.backgroundColor = 'red';
+// }, 8000 );
