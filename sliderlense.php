@@ -85,8 +85,8 @@ class SliderLense
           <div class="slider__hero--desc animate__animated animate__fadeInDown">
             <div class="slider__hero--caption">
               <div class="slider__hero--caption-info">
-                <h2>Need a plan examined and approved first time?</h2>
-                <p>Use Premium Consulting Service to gain access to our Planning Technical Experts who will provide guidance prior to formally submitting plans, register dealings and create titles to deliver significant efficiencies and value to you and your clients.</p>
+                <h2>Welcome to ZLC</h2>
+                <p>Zimbabwe Land Commission is a Centre of Excellence in Equitable and Sustainable Land Administration and Management.</p>
               </div>
               <div class="slider__hero--controls">
                 <div class="readmore">
