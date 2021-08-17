@@ -74,6 +74,9 @@
             a{
                 text-decoration: none;
                 color: #fff;
+                &:hover{
+                  color: #fff;
+                }
             }
             .readmore{
                 border: 1px solid #fff;

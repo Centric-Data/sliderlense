@@ -90,7 +90,7 @@ class SliderLense
               </div>
               <div class="slider__hero--controls">
                 <div class="readmore">
-                  <a class="readmore--post" href="#">Read More</a>
+                  <a class="readmore--post" href="<?php echo bloginfo( 'url' ) . '/mandate-and-strategic-direction'; ?>">Read More</a>
                 </div>
                 <div class="slider__hero--buttons">
                   <a class="left__control" href="#"><span class="material-icons">arrow_back</span></a>
