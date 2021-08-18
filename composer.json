@@ -1,0 +1,23 @@
+{
+  "name": "Centric-Data/sliderlense",
+  "description": "",
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "homepage": "https://github.com/Centric-Data/sliderlense",
+  "authors": [
+    {
+      "name": "Sliderlense",
+      "homepage": "https://centricdata.net"
+    },
+    {
+      "name": "Gillmour Tunhira",
+      "homepage": "https://github.com/gillmourtunhira"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require":{
+    "php": ">=5.6"
+  }
+}
