@@ -80,9 +80,9 @@ class SliderLense
           <div class="slider__hero--img animate__animated animate__fadeInRight">
               <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
               <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide02.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide03.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide04.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide05.jpg" alt="Harvestor">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider03.jpg" alt="Harvestor">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider04.jpg" alt="Harvestor">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider05.jpg" alt="Harvestor">
           </div>
           <div class="slider__hero--desc animate__animated animate__fadeInDown">
             <div class="slider__hero--caption">
