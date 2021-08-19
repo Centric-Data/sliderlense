@@ -79,10 +79,10 @@ class SliderLense
         <div class="slider__wrapper">
           <div class="slider__hero--img animate__animated animate__fadeInRight">
               <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide02.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider03.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider04.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider05.jpg" alt="Harvestor">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide02.jpg" alt="In the Field">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider03.jpg" alt="On Tour">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider04.jpg" alt="On Tour">
+              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider05.jpg" alt="On Work">
           </div>
           <div class="slider__hero--desc animate__animated animate__fadeInDown">
             <div class="slider__hero--caption">
