@@ -87,7 +87,7 @@ class SliderLense
           <div class="slider__hero--desc animate__animated animate__fadeInDown">
             <div class="slider__hero--caption">
               <div class="slider__hero--caption-info">
-                <h2>Welcome to ZLC</h2>
+                <h2>Welcome to Zimbabwe Land Commission</h2>
                 <p>Zimbabwe Land Commission is a Centre of Excellence in Equitable and Sustainable Land Administration and Management.</p>
               </div>
               <div class="slider__hero--controls">
