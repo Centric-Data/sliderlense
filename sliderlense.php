@@ -49,6 +49,25 @@ class SliderLense
 
     // Add shortcode.
     add_shortcode( 'slider-lense', array( $this, 'sl_load_shortcode' ) );
+
+    // Create Meta Boxes in CPT slider_images
+    add_action( 'add_meta_boxes', array( $this, 'sl_custom_meta_boxes' ) );
+
+    // Register a CPT
+    add_action( 'init', array( $this, 'sl_slider_cpt' ) );
+
+    // CPT Custom Columns
+    add_filter( 'manage_slider_images_posts_columns', array( $this, 'sl_slides_columns' ) );
+
+    // Save Meta Box Data
+    add_action( 'save_post', array( $this, 'sl_save_meta_box' ) );
+
+    // Fetch Meta Data
+    add_action( 'manage_slider_images_posts_custom_column', array( $this, 'sl_custom_column_data' ), 10, 2 );
+
+    // Register REST Route
+    add_filter( 'rest_route_for_post', array( $this, 'sl_rest_route_cpt' ), 10, 2 );
+
   }
 
   // Load Assets.
@@ -72,38 +91,99 @@ class SliderLense
 
   }
 
+  // Create meta boxes
+  public function sl_custom_meta_boxes(){
+    add_meta_box( 'slider_fields', __( 'Slider Image' ), array( $this, 'sl_render_sliderimgbox' ), 'slider_images', 'advanced', 'high' );
+  }
+
+  // Render Meta-boxes html
+  public function sl_render_sliderimgbox( $post ){
+    include( SL_LOCATION . '/inc/box_forms.php' );
+  }
+
   // Shortcode function
   public function sl_load_shortcode(){
-    ?>
-      <section>
-        <div class="slider__wrapper">
-          <div class="slider__hero--img animate__animated animate__fadeInRight">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide01.jpg" alt="Harvestor">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slide02.jpg" alt="In the Field">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider03.jpg" alt="On Tour">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider04.jpg" alt="On Tour">
-              <img class="fill" src="<?php echo SL_PLUGIN_URL ?>img/slider05.jpg" alt="On Work">
-          </div>
-          <div class="slider__hero--desc animate__animated animate__fadeInDown">
-            <div class="slider__hero--caption">
-              <div class="slider__hero--caption-info">
-                <h2>Welcome to Zimbabwe Land Commission</h2>
-                <p>Zimbabwe Land Commission is a Centre of Excellence in Equitable and Sustainable Land Administration and Management.</p>
-              </div>
-              <div class="slider__hero--controls">
-                <div class="readmore">
-                  <a class="readmore--post" href="<?php echo bloginfo( 'url' ) . '/mandate-and-strategic-direction'; ?>">Read More</a>
-                </div>
-                <div class="slider__hero--buttons">
-                  <a class="left__control" href="#"><span class="material-icons">arrow_back</span></a>
-                  <a class="right__control" href="#"><span class="material-icons">arrow_forward</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    <?php
+    include( SL_LOCATION . '/inc/shortcodehtml.php' );
+  }
+
+  // Register a route
+  public function sl_rest_route_cpt( $route, $post ){
+    if ( $post->post_type === 'slider_images' ) {
+      $route = '/wp/v2/slides/' . $post->ID;
+    }
+    return $route;
+  }
+
+  // Create a CPT
+  public function sl_slider_cpt(){
+    $labels = array(
+      'name'        =>  _x( 'Slides', 'Post type general name', 'sliderlense' ),
+      'singular'    =>  _x( 'Slide', 'Post type singular', 'sliderlense' ),
+      'menu_name'   =>  _x( 'Slides', 'Admin Menu Text', 'sliderlense' ),
+      'name_admin_bar'  =>  _x( 'Slide', 'Add New on Toolbar', 'sliderlense' ),
+      'add_new'         =>  __( 'Add New', 'sliderlense' ),
+      'add_new_item'    =>  __( 'Add New Slide', 'sliderlense' ),
+      'new_item'        =>  __( 'New Slide' ),
+      'edit_item'       =>  __( 'Edit Slide', 'sliderlense' ),
+      'view_item'       =>  __( 'View Slide', 'sliderlense' ),
+      'all_items'       =>  __( 'All Slides', 'sliderlense' ),
+    );
+    $args   = array(
+      'labels'          =>  $labels,
+      'public'          =>  true,
+      'has_archive'     =>  'slider_images',
+      'rewrite'         =>  array(
+        'slug'          =>  'slider_images/%slidescat%',
+        'with_front'    =>  FALSE
+      ),
+      'hierarchical'    =>  false,
+      'show_in_rest'    =>  true,
+      'rest_base'       =>  'slides',
+      'rest_controller_class' =>  'WP_REST_Posts_Controller',
+      'supports'        =>  array( 'title', 'editor' ),
+      'capability_type' =>  'post',
+      'menu_icon'       =>  'dashicons-cover-image'
+    );
+    register_post_type( 'slider_images', $args );
+  }
+
+  // Custom Slides CPT Columns
+  public function sl_slides_columns( $columns ){
+    $newColumns = array();
+      $newColumns['title'] = 'Slide Title';
+      $newColumns['details'] = 'Slide Description';
+      $newColumns['date'] = 'Date';
+
+      return $newColumns;
+  }
+
+  // Save data from meta boxes
+  public function sl_save_meta_box( $post_id ){
+    if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+    if( $parent_id = wp_is_post_revision( $post_id ) ){
+      $post_id = $parent_id;
+    }
+    $fields = [
+      'slider_img_url',
+      'slider_alt'
+    ];
+    foreach ( $fields as $field ) {
+      if ( array_key_exists( $field, $_POST ) ) {
+        update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
+      }
+    }
+  }
+
+  // Fetch and populate slider data
+  public function sl_custom_column_data( $column, $post_id ){
+    switch ( $column ) {
+      case 'details':
+        echo get_the_excerpt();
+        break;
+      default:
+        # code...
+        break;
+    }
   }
 
 }
